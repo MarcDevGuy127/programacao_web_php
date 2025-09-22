@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card">
+    <form action="php/processa.php" method="POST">
+      <h1>Formulário</h1>
+      
+      <label>Nome:
+        <input type="text" name="nome" placeholder="Josué da Silva Sauro" required />
+      </label>
+
+      <label>E-mail:
+        <input type="email" name="email" placeholder="bartolomeu@gmail.com" required />
+      </label>
+
+      <label>Telefone:
+        <input type="tel" name="telefone" placeholder="(41)99999-9999" required />
+      </label>
+
+      <label>Data de nascimento:
+        <input type="date" name="data" required />
+      </label>
+
+      <label>Sexo:
+        <select name="sexo" required>
+          <option value="" disabled selected>Selecione</option>
+          <option>Masculino</option>
+          <option>Feminino</option>
+          <option>Prefiro não informar</option>
+        </select>
+      </label>
+
+      <label>Senha:
+        <input type="password" name="senha" placeholder="******" required />
+      </label>
+
+      <label>Confirme a senha:
+        <input type="password" name="confirma_senha" placeholder="******" required />
+      </label>
+
+      <fieldset>
+        <legend>Deseja receber novidades?</legend>
+        <label><input type="radio" name="novidade" value="sim" /> Sim</label>
+        <label><input type="radio" name="novidade" value="nao" /> Não</label>
+      </fieldset>
+
+      <label>
+        <legend>Mensagem</legend>
+        <textarea name="mensagem" rows="4" placeholder="Digite a sua mensagem..." required></textarea>
+      </label>
+
+      <fieldset>
+        <legend>Aceita os termos de uso?</legend>
+        <label><input type="radio" name="termos" value="sim" required /> Sim</label>
+        <label><input type="radio" name="termos" value="nao" /> Não</label>
+      </fieldset>
+
+      <div class="botoes">
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpar</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
