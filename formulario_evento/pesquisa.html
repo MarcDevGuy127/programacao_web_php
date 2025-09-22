@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <main class="card">
+    <form action="php/processa.php" method="POST">
+      <h1>Pesquisa de Satisfação do Evento</h1>
+      
+      <label>
+        <fieldset>
+          <legend>Nome:</legend>
+          <input class="nome" type="text" name="nome" placeholder="Josué da Silva Sauro" required />
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>E-mail:</legend>
+          <input class="email" type="email" name="email" placeholder="bartolomeu@gmail.com" required />
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>Como ficou sabendo do evento?</legend>
+          <select name="informacao" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="redes_sociais">Redes Sociais</option>
+            <option value="amigos">Amigos</option>
+            <option value="site">Site Oficial</option>
+            <option value="outros">Outros</option>
+          </select>
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>Como você classificaria o evento em geral?</legend>
+          <label><input type="radio" name="avaliacao" value="excelente" required/> Excelente</label>
+          <label><input type="radio" name="avaliacao" value="bom" /> Bom</label>
+          <label><input type="radio" name="avaliacao" value="regular" /> Regular</label>
+          <label><input type="radio" name="avaliacao" value="ruim" /> Ruim</label>
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>O que mais gostou do evento?</legend>
+          <label><input type="checkbox" name="gostou" value="palestras" required/> Palestras</label>
+          <label><input type="checkbox" name="gostou" value="oficinas" /> Oficinas</label>
+          <label><input type="checkbox" name="gostou" value="networking" /> Networking</label>
+          <label><input type="checkbox" name="gostou" value="alimentacao" /> Alimentação</label>
+          <label><input type="checkbox" name="gostou" value="brindes" /> Brindes</label>
+        </fieldset>
+      </label>
+
+      <label class="sugestao">
+        <legend>Sugestões?</legend>
+        <textarea name="sugestao" rows="4" placeholder="Digite as suas sugestões..." required></textarea>
+      </label>
+
+      <div class="botoes">
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpar</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
