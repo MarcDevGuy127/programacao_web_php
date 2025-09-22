@@ -1,0 +1,18 @@
+* {
+    background-color: gray;
+}
+
+h1 {
+    color: aliceblue;
+    padding-left: 20px;
+    background-color: blue;
+}
+
+label {
+    background-color: black;
+    color: aliceblue;
+}
+
+button {
+    color: aliceblue;
+}
