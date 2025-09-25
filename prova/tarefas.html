@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <main class="card">
+    <form action="php/processa_tarefa.php" method="POST">
+      <h1>Gerenciador de Tarefas</h1>
+      
+      <label>
+        <fieldset>
+          <legend><span>*</span>Título da Tarefa:</legend>
+          <input class="titulo_tarefa" type="text" name="titulo_tarefa" placeholder="Fazer manutenção." required />
+        </fieldset>
+      </label>
+
+      <label class="descricao">
+        <legend>Descrição</legend>
+        <textarea name="descricao" rows="4" placeholder="Consertar a janela..."></textarea>
+      </label>
+
+
+      <label>
+        <fieldset>
+          <legend><span>*</span>Prioridade</legend>
+          <label><input type="radio" name="prioridade" value="alta" /> Alta</label>
+          <label><input type="radio" name="prioridade" value="media" checked/> Média</label>
+          <label><input type="radio" name="prioridade" value="baixa" /> Baixa</label>
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend><span>*</span>Prazo Final</legend>
+          <label><input type="date" name="prazo" required/></label>
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend><span>*</span>Responsável</legend>
+          <select name="responsavel" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="ana">Ana</option>
+            <option value="carlos">Carlos</option>
+            <option value="fernanda">Fernanda</option>
+          </select>
+        </fieldset>
+      </label>
+
+      <div class="botoes">
+        <button type="submit">Adicionar Tarefa</button>
+        <button type="reset">Limpar</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

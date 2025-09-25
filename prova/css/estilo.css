@@ -1,0 +1,59 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+span{
+    color: red;
+}
+
+body {
+    background-color: cornflowerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    display: flexbox;
+    width: 100%;
+}
+
+.titulo_tarefa {
+    padding-right: 300px;
+}
+
+.email {
+    padding-right: 300px;
+}
+
+label.sugestao legend {
+    padding: 5px;
+}
+
+form {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+form h1 {
+    text-align: center;
+}
+
+.card {
+    background-color: whitesmoke;
+    border-radius: 16px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    padding: 5px;
+}
+
+button {
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
