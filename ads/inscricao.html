@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <main class="card">
+    <form action="php/processa.php" method="POST">
+      <h1>Formulário de Inscrição</h1>
+      
+      <label>
+        <fieldset>
+          <legend>Nome:</legend>
+          <input class="nome" type="text" name="nome" placeholder="Josué da Silva Sauro" required />
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>E-mail:</legend>
+          <input class="email" type="email" name="email" placeholder="bartolomeu@gmail.com" required />
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>Qual a sua área de atuação?</legend>
+          <select name="atuacao" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="front_end">Front-end</option>
+            <option value="back_end">Back-end</option>
+            <option value="full_stack">Full-stack</option>
+            <option value="design">Design UX/UI</option>
+            <option value="outra">Outra</option>
+          </select>
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>Qual é o seu tempo de experiência na área?</legend>
+          <label><input type="radio" name="experiencia" value="nenhuma" required/> Nenhuma</label>
+          <label><input type="radio" name="experiencia" value="1_2anos" /> 1-2 anos</label>
+          <label><input type="radio" name="experiencia" value="3_5anos" /> 3-5 anos</label>
+          <label><input type="radio" name="experiencia" value="mais_5anos" /> Mais de 5 anos</label>
+        </fieldset>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>Quais temas te interessam?</legend>
+          <label><input type="checkbox" name="interesses" value="html_css" required/> HTML/CSS</label>
+          <label><input type="checkbox" name="interesses" value="js" /> JavaScript</label>
+          <label><input type="checkbox" name="interesses" value="php" /> PHP</label>
+          <label><input type="checkbox" name="interesses" value="python" /> Python</label>
+          <label><input type="checkbox" name="interesses" value="bd" /> Bancos de Dados</label>
+          <label><input type="checkbox" name="interesses" value="frameworks" /> Frameworks</label>
+        </fieldset>
+      </label>
+
+      <label class="comentario">
+        <legend>Comentário</legend>
+        <textarea name="comentario" rows="4" placeholder="Digite o seu comentário..." required></textarea>
+      </label>
+
+      <label>
+        <fieldset>
+          <legend>Deseja receber notícias?</legend>
+          <label><input type="checkbox" name="noticias" value="sim_noticias"/> Sim</label>
+          <label><input type="checkbox" name="noticias" value="nao_noticias"/> Não</label>
+        </fieldset>
+      </label>
+
+      <div class="botoes">
+        <button type="submit">Inscrever-se</button>
+        <button type="reset">Limpar</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
