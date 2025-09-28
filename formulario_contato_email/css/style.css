@@ -15,15 +15,12 @@ body {
 
 textarea {
     display: flexbox;
-    width: 100%;
+    width: 99.1%;
 }
 
-.titulo_tarefa {
-    padding-right: 300px;
-}
-
-.email {
-    padding-right: 300px;
+input {
+    min-width: 500px;
+    box-sizing: border-box;
 }
 
 label.sugestao legend {
