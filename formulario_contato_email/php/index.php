@@ -1,10 +1,22 @@
 <?php 
+<?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $titulo_tarefa = $_POST['titulo_tarefa'];
-    $descricao = $_POST['descricao'];
-    $prioridade = $_POST['prioridade'];
-    $responsavel = $_POST['responsavel'];
-    $prazo = $_POST['prazo'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $mensagem = $_POST['mensagem'];
+
+    $to = "destinatario@exemplo.com";
+    $subject = "Novo contato do site";
+    $body = "Nome: $nome\nEmail: $email\nMensagem:\n$mensagem";
+
+    $headers = "From: $email";
+
+    if (mail($to, $subject, $body, $headers)) {
+        echo "E-mail enviado com sucesso!";
+    } else {
+        echo "Erro ao enviar e-mail.";
+    }
 
     $erros = [];
 
@@ -38,15 +50,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    echo "<body style='background-color: cornflowerblue;'>";
-    echo "<h1 style='color: green; background-color: white;'>Tarefa cadastrada com sucesso!</h1>";
-    echo '<textarea rows="16" cols="40" readonly>';
-    echo "Título da Tarefa: " . htmlspecialchars($titulo_tarefa) . "\n";
-    echo "Descrição: " . htmlspecialchars($descricao) . "\n";
-    echo "Prazo: " . htmlspecialchars($prazo) . "\n";
-    echo "Prioridade: " . htmlspecialchars($prioridade) . "\n";
-    echo "Responsável: " . htmlspecialchars($responsavel) . "\n";
-    echo "</textarea>";
-    echo "</body>";
-}
 ?>
