@@ -13,29 +13,32 @@
       <label>
         <fieldset>
           <legend><span>*</span>Email Title:</legend>
-          <input class="email_title" type="text" name="email_title" placeholder="Grettings" required />
+          <input class="email_title" id="email_title" type="text" name="email_title" placeholder="Grettings" required />
         </fieldset>
       </label>
 
       <label class="email_body">
         <fieldset>
             <legend><span>*</span>Email Body</legend>
-        <textarea name="email_body" rows="4" placeholder="Type your message here..."></textarea>
+        <textarea name="email_body" id="email_body" rows="4" placeholder="Type your message here..."></textarea>
         </fieldset>
       </label>
 
       <label>
         <fieldset>
           <legend><span>*</span>Your Name:</legend>
-          <input class="email_title" type="text" name="email_author" placeholder="Chris William" required />
+          <input class="email_author" id="email_author" type="text" name="email_author" placeholder="Chris William" required />
         </fieldset>
       </label>
 
       <div class="botoes">
-        <button type="submit">Send Email</button>
+        <!--The PHP submit button don't make a PHP server operation-->
+        <!--The JS was used just for demonstration-->
+        <button type="submit" onclick="sendEmail()">Send Email</button>
         <button type="reset">Clean</button>
       </div>
     </form>
   </main>
+  <script src="js/index.js"></script>
 </body>
 </html>

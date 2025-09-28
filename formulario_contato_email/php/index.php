@@ -15,7 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mail($to, $subject, $body, $headers)) {
         echo "E-mail submited!";
     } else {
-        echo "Error to send e-mail.";
+        echo "\n";
+        echo "\n The PHP submit button don't make a PHP server operation. That PHP code doesn't work on server.";
+        echo "\n I am using JS for show a demonstration while that alert is showed!";
     }
 
     $errors = [];
