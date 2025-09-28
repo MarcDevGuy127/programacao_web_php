@@ -1,53 +1,47 @@
 <?php 
-<?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $mensagem = $_POST['mensagem'];
+    $email_title = $_POST['email_title'];
+    $email_body = $_POST['email_body'];
+    $email_author = $_POST['email_author'];
 
-    $to = "destinatario@exemplo.com";
-    $subject = "Novo contato do site";
-    $body = "Nome: $nome\nEmail: $email\nMensagem:\n$mensagem";
 
-    $headers = "From: $email";
+    $to = "ficticious@gmail.com";
+    $subject = $email_title;
+    $body = "Hi! My name is: $email_author\nEmail: $email_title\n$email_body";
+
+    $headers = "From: $email_title";
 
     if (mail($to, $subject, $body, $headers)) {
-        echo "E-mail enviado com sucesso!";
+        echo "E-mail submited!";
     } else {
-        echo "Erro ao enviar e-mail.";
+        echo "Error to send e-mail.";
     }
 
-    $erros = [];
+    $errors = [];
 
-    if (empty($titulo_tarefa)) {
-        $erros[] = "Escrever um título é obrigatório.";
+    if (empty($email_title)) {
+        $errors[] = "Type a title for the email is mandatory.";
     }
 
-    if (empty($prioridade)) {
-        $erros[] = "Selecionar a prioridade é obrigatório.";
+    if (empty($email_body)) {
+        $errors[] = "Type a text for the email is mandatory.";
     }
 
-    if (empty($responsavel)) {
-        $erros[] = "Selecionar o responsável pela tarefa é obrigatório.";
+    if (empty($email_author)) {
+        $errors[] = "Identify yourself is mandatory.";
     }
 
-    if ($prazo) {
-        $dataAtual = date('Y-m-d');
-        if ($prazo < $dataAtual) {
-            $erros[] = "O prazo final não pode ser uma data no passado.";
-        }
-    }
-
-    if (!empty($erros)) {
-        echo "<h1 style='color: red;background-color: white;'>Foram encontrados os seguintes erros:</h1>";
+    if (!empty($errors)) {
+        echo "<h1 style='color: red;background-color: white;'>The following errors was found:</h1>";
         echo "<ul style='color: red; background-color: white;'>";
-        foreach ($erros as $erro) {
-            echo "<li>" . htmlspecialchars($erro) . "</li>";
+        foreach ($errors as $error) {
+            echo "<li>" . htmlspecialchars($error) . "</li>";
         }
         echo "</ul>";
-        echo "<a href='../tarefas.html'>Retorne para a página principal</a>";
+        echo "<a href='../index.html'>Retorne to the main page</a>";
         exit;
     }
+}
 
 ?>
