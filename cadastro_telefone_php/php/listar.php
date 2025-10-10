@@ -67,12 +67,14 @@
                  <th>ID</th>
                  <th>Nome</th>
                  <th>E-mail</th>
+                 <th>Telefone</th>
              </tr>
              <?php foreach ($usuariosAssoc as $u): ?>
                  <tr>
                      <td><?= $u['id'] ?></td>
                      <td><?= $u['nome'] ?></td>
                      <td><?= $u['email'] ?></td>
+                     <td><?= $u['telefone'] ?></td>
                  </tr>
              <?php endforeach; ?>
          </table>
@@ -83,12 +85,14 @@
                  <th>ID</th>
                  <th>Nome</th>
                  <th>E-mail</th>
+                 <th>Telefone</th>
              </tr>
              <?php foreach ($usuariosObj as $u): ?>
                  <tr>
                      <td><?= $u->id ?></td>
                      <td><?= $u->nome ?></td>
                      <td><?= $u->email ?></td>
+                     <td><?= $u->telefone ?></td>
                  </tr>
              <?php endforeach; ?>
          </table>

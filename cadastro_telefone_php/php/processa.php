@@ -9,10 +9,12 @@
         // Receber dados do formulário
         $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $telefone = filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_SPECIAL_CHARS);
         // Inserir dados usando prepared statement
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email) VALUES (:nome, :email)");
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, telefone) VALUES (:nome, :email, :telefone)");
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':telefone', $telefone);
         if ($stmt->execute()) {
             echo "Cadastro realizado com sucesso!<br>";
             echo '<a href="listar.php">Ver lista de usuários</a>';
