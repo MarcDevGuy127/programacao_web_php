@@ -1,6 +1,6 @@
  <?php
     // Conexão com o banco usando PDO
-    $dsn = "mysql:host=localhost;dbname=meubanco2;charset=utf8";
+    $dsn = "mysql:host=localhost;dbname=exemplo_pdo;charset=utf8";
     $usuario = "root";
     $senha = ""; // ajuste conforme o seu ambiente
     try {
