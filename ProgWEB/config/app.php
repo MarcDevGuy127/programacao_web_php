@@ -9,5 +9,3 @@ return [
         'password' => 'Passw0rd', // A senha que você definiu para o usuário 'sa'
     ]
 ];
-
-?>;
