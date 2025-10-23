@@ -84,5 +84,9 @@ try {
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <p>
+        <a href="index.html">Sair</a>
+    </p>
 </body>
 </html>
