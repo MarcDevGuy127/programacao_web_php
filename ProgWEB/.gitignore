@@ -1,0 +1,7 @@
+# Ignorar variáveis de ambiente (se usar futuramente)
+.env
+# Ignorar logs de erro (se for criado)
+*.log
+# Ignorar arquivos temporários e de cache
+tmp/
+cache/
