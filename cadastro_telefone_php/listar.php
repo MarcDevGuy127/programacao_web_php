@@ -1,23 +1,22 @@
 <?php
-// Configuração de conexão
 $dsn = "mysql:host=localhost;dbname=exemplo_pdo;charset=utf8";
 $usuario = "root";
 $senha = "";
 
-// Caminho do arquivo de log
+// sinalizando caminho do arquivo de log
 $arquivoLog = __DIR__ . '/erros.log';
 
 try {
-    // Tentativa de conexão
+    // tentando conexão
     $pdo = new PDO($dsn, $usuario, $senha);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // --- FILTROS DE BUSCA E ORDENAÇÃO ---
+    // filtros de busca e ordenação
     $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
     $ordem = filter_input(INPUT_GET, 'ordem', FILTER_SANITIZE_SPECIAL_CHARS) ?? 'nome';
     $direcao = filter_input(INPUT_GET, 'direcao', FILTER_SANITIZE_SPECIAL_CHARS) ?? 'ASC';
 
-    // Evita SQL Injection — só permite essas colunas e direções
+    // evitando sql injection, permitindo essas colunas e direções
     $colunasPermitidas = ['nome', 'email'];
     $direcoesPermitidas = ['ASC', 'DESC'];
 
@@ -26,7 +25,7 @@ try {
     if (!in_array($direcao, $direcoesPermitidas))
         $direcao = 'ASC';
 
-    // --- MONTANDO CONSULTA ---
+    // construindo consulta-
     if ($busca) {
         $stmt = $pdo->prepare("SELECT id, nome, email, telefone FROM usuarios 
                                WHERE nome LIKE :busca OR email LIKE :busca 
@@ -39,18 +38,18 @@ try {
 
     $stmt->execute();
 
-    // Usando FETCH_NUM (retorna um array numérico)
+    // utilizando FETCH_NUM (retorna um array numérico)
     $usuarios = $stmt->fetchAll(PDO::FETCH_NUM);
 
 } catch (PDOException $e) {
-    // --- REGISTRA O ERRO DETALHADO NO LOG ---
+    // registrando o erro no log
     $mensagemErro = "[" . date('Y-m-d H:i:s') . "] " . $e->getMessage() . PHP_EOL;
     file_put_contents($arquivoLog, $mensagemErro, FILE_APPEND);
 
-    // --- MOSTRA MENSAGEM AMIGÁVEL AO USUÁRIO ---
+    // exibindo mensagem para o usuário
     echo "<p style='color:red; font-family: Arial;'>Ocorreu um problema ao carregar os dados. Tente novamente mais tarde.</p>";
 
-    // Interrompe a execução para evitar exibir conteúdo inconsistente
+    // interrompendo a execução para evitar exibir conteúdo inconsistente
     exit;
 }
 ?>
