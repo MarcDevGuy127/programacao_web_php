@@ -1,4 +1,5 @@
 <?php
+// Conexão com o banco usando PDO
 $dsn = "mysql:host=localhost;dbname=exemplo_pdo;charset=utf8";
 $usuario = "root";
 $senha = "";
@@ -7,150 +8,81 @@ try {
     $pdo = new PDO($dsn, $usuario, $senha);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Captura o termo da busca
-    $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_SPECIAL_CHARS);
+    // --- FILTROS DE BUSCA E ORDENAÇÃO ---
+    $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
+    $ordem = filter_input(INPUT_GET, 'ordem', FILTER_SANITIZE_SPECIAL_CHARS) ?? 'nome';
+    $direcao = filter_input(INPUT_GET, 'direcao', FILTER_SANITIZE_SPECIAL_CHARS) ?? 'ASC';
 
+    // Evita SQL Injection — só permite essas colunas e direções
+    $colunasPermitidas = ['nome', 'email'];
+    $direcoesPermitidas = ['ASC', 'DESC'];
+
+    if (!in_array($ordem, $colunasPermitidas)) $ordem = 'nome';
+    if (!in_array($direcao, $direcoesPermitidas)) $direcao = 'ASC';
+
+    // --- MONTANDO CONSULTA ---
     if ($busca) {
-        // Pesquisa por nome ou email (usando LIKE)
-        $stmt = $pdo->prepare("SELECT * FROM usuarios 
-                               WHERE nome LIKE :busca OR email LIKE :busca
-                               ORDER BY id DESC");
-        $termo = "%$busca%";
-        $stmt->bindParam(':busca', $termo);
-        $stmt->execute();
+        $stmt = $pdo->prepare("SELECT id, nome, email, telefone FROM usuarios 
+                               WHERE nome LIKE :busca OR email LIKE :busca 
+                               ORDER BY $ordem $direcao");
+        $stmt->bindValue(':busca', "%$busca%");
     } else {
-        // Lista todos se não houver busca
-        $stmt = $pdo->query("SELECT * FROM usuarios ORDER BY id DESC");
+        $stmt = $pdo->prepare("SELECT id, nome, email, telefone FROM usuarios 
+                               ORDER BY $ordem $direcao");
     }
 
-    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    // Usando FETCH_NUM (retorna um array numérico)
+    $usuarios = $stmt->fetchAll(PDO::FETCH_NUM);
 
 } catch (PDOException $e) {
-    echo "Erro: " . $e->getMessage();
+    die("Erro de conexão: " . $e->getMessage());
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Usuários</title>
+    <title>Listagem de Usuários</title>
     <style>
-        body {
-            font-family: Arial;
-            margin: 40px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 70%;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        a {
-            text-decoration: none;
-            color: blue;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .excluir {
-            color: red;
-        }
-
-        .busca-box {
-            margin-bottom: 15px;
-        }
-
-        input[type="text"] {
-            padding: 6px;
-            width: 250px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 6px 10px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; cursor: pointer; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        a { text-decoration: none; color: blue; }
+        form { margin-bottom: 20px; }
     </style>
-    <script>
-        function confirmarExclusao(id) {
-            if (confirm("Tem certeza que deseja excluir este usuário?")) {
-                window.location.href = 'excluir.php?id=' + id;
-            }
-        }
-    </script>
 </head>
-
 <body>
+    <h1>Listagem de Usuários</h1>
 
-    <h2>Usuários Cadastrados</h2>
-
-    <!-- 🔍 Campo de Busca -->
-    <form method="GET" action="listar.php" class="busca-box">
-        <input type="text" name="busca" placeholder="Buscar por nome ou email"
-            value="<?= htmlspecialchars($busca ?? '') ?>">
+    <form method="GET" action="">
+        <input type="text" name="busca" placeholder="Buscar por nome ou email" value="<?= htmlspecialchars($busca) ?>">
         <button type="submit">Buscar</button>
-        <?php if (!empty($busca)): ?>
-            <a href="listar.php" style="margin-left:10px;">Limpar</a>
-        <?php endif; ?>
     </form>
 
-    <!-- 📋 Tabela de Usuários -->
     <table>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
+            <th><a href="?ordem=nome&direcao=<?= $ordem === 'nome' && $direcao === 'ASC' ? 'DESC' : 'ASC' ?>">Nome</a></th>
+            <th><a href="?ordem=email&direcao=<?= $ordem === 'email' && $direcao === 'ASC' ? 'DESC' : 'ASC' ?>">Email</a></th>
             <th>Telefone</th>
             <th>Ações</th>
         </tr>
 
-        <?php if (count($usuarios) > 0): ?>
-            <?php foreach ($usuarios as $u): ?>
-                <tr>
-                    <td><?= $u['id'] ?></td>
-                    <td><?= htmlspecialchars($u['nome']) ?></td>
-                    <td><?= htmlspecialchars($u['email']) ?></td>
-                    <td><?= htmlspecialchars($u['telefone']) ?></td>
-                    <td>
-                        <a href="editar.php?id=<?= $u['id'] ?>">Editar</a> |
-                        <a href="#" class="excluir" onclick="confirmarExclusao(<?= $u['id'] ?>)">Excluir</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
+        <?php foreach ($usuarios as $usuario): ?>
             <tr>
-                <td colspan="5" style="text-align:center;">Nenhum usuário encontrado.</td>
+                <td><?= htmlspecialchars($usuario[1]) ?></td>
+                <td><?= htmlspecialchars($usuario[2]) ?></td>
+                <td><?= htmlspecialchars($usuario[3]) ?></td>
+                <td>
+                    <a href="editar.php?id=<?= $usuario[0] ?>">Editar</a> |
+                    <a href="excluir.php?id=<?= $usuario[0] ?>" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
             </tr>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </table>
-
-    <p><a href="index.html">← Voltar ao cadastro</a></p>
-
 </body>
-
 </html>
