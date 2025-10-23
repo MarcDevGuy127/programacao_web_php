@@ -131,9 +131,7 @@ try {
         <?php endforeach; ?>
     </table>
 
-    <p>
-        <a href="index.html">Sair</a>
-    </p>
+    <button type="button" onclick="window.location.href='index.html'">Sair</button>
 </body>
 
 </html>

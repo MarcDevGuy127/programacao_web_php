@@ -86,7 +86,7 @@ try {
         <button type="submit">Salvar Alterações</button>
     </form>
 
-    <p><a href="listar.php">← Voltar</a></p>
+    <button type="button" onclick="window.location.href='listar.php'">Voltar</button>
 
 </body>
 
