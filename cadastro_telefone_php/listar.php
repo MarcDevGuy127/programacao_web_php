@@ -29,7 +29,7 @@ try {
 
         table {
             border-collapse: collapse;
-            width: 60%;
+            width: 70%;
         }
 
         th,
@@ -51,12 +51,24 @@ try {
         a:hover {
             text-decoration: underline;
         }
+
+        .excluir {
+            color: red;
+        }
     </style>
+    <script>
+        function confirmarExclusao(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                window.location.href = 'excluir.php?id=' + id;
+            }
+        }
+    </script>
 </head>
 
 <body>
 
     <h2>Usuários Cadastrados</h2>
+
     <table>
         <tr>
             <th>ID</th>
@@ -73,11 +85,14 @@ try {
                 <td><?= htmlspecialchars($u['email']) ?></td>
                 <td><?= htmlspecialchars($u['telefone']) ?></td>
                 <td>
-                    <a href="editar.php?id=<?= $u['id'] ?>">Editar</a>
+                    <a href="editar.php?id=<?= $u['id'] ?>">Editar</a> |
+                    <a href="#" class="excluir" onclick="confirmarExclusao(<?= $u['id'] ?>)">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <p><a href="index.html">← Voltar ao cadastro</a></p>
 
 </body>
 
