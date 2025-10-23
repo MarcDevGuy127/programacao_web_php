@@ -1,5 +1,5 @@
 <?php
-// public/index.php - Front Controller
+// public/index.php - front controller
 
 session_start(); // Inicia a sessão para mensagens de feedback
 
