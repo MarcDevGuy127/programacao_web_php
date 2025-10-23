@@ -35,7 +35,14 @@ try {
 
     // Usando FETCH_NUM (retorna um array numérico)
     $usuarios = $stmt->fetchAll(PDO::FETCH_NUM);
+/*
+*
+FETCH_ASSOC é o mais comum — retorna arrays associativos com nomes das colunas.
 
+FETCH_NUM é mais leve (economiza memória) e retorna apenas índices numéricos.
+
+FETCH_OBJ retorna um objeto, onde cada coluna é um atributo.
+*/
 } catch (PDOException $e) {
     die("Erro de conexão: " . $e->getMessage());
 }
