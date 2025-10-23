@@ -1,35 +1,39 @@
- .formulario {
-     width: 320px;
-     margin: 60px auto;
-     padding: 25px;
-     border: 1px solid #ccc;
-     border-radius: 8px;
-     background: #fafafa;
- }
+body {
+    font-family: Arial, sans-serif;
+}
 
- .field {
-     margin-bottom: 15px;
- }
+.formulario {
+    width: 320px;
+    margin: 60px auto;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fafafa;
+}
 
- label {
-     display: block;
-     margin-bottom: 5px;
- }
+.field {
+    margin-bottom: 15px;
+}
 
- input[type="text"],
- input[type="email"],
- input[type="tel"] {
-     width: 100%;
-     padding: 8px;
-     box-sizing: border-box;
- }
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
- input[type="submit"] {
-     width: 100%;
-     padding: 10px;
-     background: #4682b4;
-     border: none;
-     color: #fff;
-     border-radius: 4px;
-     cursor: pointer;
- }
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background: #4682b4;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}

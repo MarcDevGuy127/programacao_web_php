@@ -34,7 +34,7 @@ try {
     <title>Editar Usuário</title>
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             margin: 40px;
         }
 
