@@ -1,5 +1,10 @@
 <?php
-require_once 'conn.php'; // incluindo conexão centralizada
+$dsn = "mysql:host=localhost;dbname=exemplo_pdo;charset=utf8";
+$usuario = "root";
+$senha = "";
+
+// sinalizando caminho do arquivo de log
+$arquivoLog = __DIR__ . '/erros.log';
 
 try {
     // tentando conexão
