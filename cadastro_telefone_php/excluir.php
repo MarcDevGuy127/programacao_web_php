@@ -1,7 +1,6 @@
 <?php
-$dsn = "mysql:host=localhost;dbname=exemplo_pdo;charset=utf8";
-$usuario = "root";
-$senha = "";
+require_once 'conn.php';
+
 
 try {
     $pdo = new PDO($dsn, $usuario, $senha);
