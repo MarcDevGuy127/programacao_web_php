@@ -37,12 +37,12 @@ try {
 
     if ($stmt->execute()) {
         echo "<script>
-            alert('✅ Usuário excluído com sucesso!');
+            alert('Usuário excluído com sucesso!');
             window.location.href = 'listar.php';
         </script>";
     } else {
         echo "<script>
-            alert('⚠️ Erro ao excluir usuário.');
+            alert('Erro ao excluir usuário.');
             window.location.href = 'listar.php';
         </script>";
     }
