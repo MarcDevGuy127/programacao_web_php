@@ -56,16 +56,16 @@ try {
         }
 
         button {
-            padding: 8px;
-            border: none;
-            background-color: green;
+            background: #342397ff;
             color: white;
+            border: none;
             border-radius: 4px;
+            margin: 2px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: darkgreen;
+            background-color: darkblue;
         }
     </style>
 </head>

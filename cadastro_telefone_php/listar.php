@@ -95,6 +95,19 @@ try {
         form {
             margin-bottom: 20px;
         }
+
+        button {
+            background: #342397ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin: 2px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
     </style>
 </head>
 
